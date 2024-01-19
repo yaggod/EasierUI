@@ -12,8 +12,6 @@ namespace EasierUI
 {
 	public static class SpritesHelper
 	{
-
-
 		public static Sprite GetFromBitmap(Bitmap image)
 		{
 			MemoryStream tempStream = new MemoryStream();
