@@ -52,7 +52,7 @@ namespace EasierUI.Controls.Factories
 					GO.GetComponent<TMP_InputField>(),
 					text,
 					textPlaceHolder,
-					text.GetComponent<Image>()
+					GO.GetComponent<Image>()
 				);
 		}
 
