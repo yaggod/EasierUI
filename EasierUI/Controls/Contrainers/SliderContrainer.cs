@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using static System.Collections.Specialized.BitVector32;
 
 namespace EasierUI.Controls
 {
