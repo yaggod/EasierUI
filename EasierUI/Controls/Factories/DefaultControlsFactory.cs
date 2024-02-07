@@ -22,12 +22,17 @@ namespace EasierUI.Controls.Factories
 		protected override ButtonContrainer CreateButton(ControlsResources.Resources resources = new ControlsResources.Resources())
 		{
 			GameObject GO = TMP_DefaultControls.CreateButton(ControlsResources.ConvertToTMP(resources));
+			TextMeshProUGUI text = GO.GetComponentInChildren<TextMeshProUGUI>();
+			if(resources.font != null)
+			{
+				text.font = resources.font;
+			}
 
 			return new ButtonContrainer(
 					GO,
 					GO.GetComponent<Button>(),
 					GO.GetComponent<Image>(),
-					GO.GetComponentInChildren<TextMeshProUGUI>()
+					text
 				);
 		}
 
@@ -35,12 +40,18 @@ namespace EasierUI.Controls.Factories
 		{
 			GameObject GO = TMP_DefaultControls.CreateInputField(ControlsResources.ConvertToTMP(resources));
 			TextMeshProUGUI text = GO.transform.Find("Text Area/Text").gameObject.GetComponent<TextMeshProUGUI>();
+			TextMeshProUGUI textPlaceHolder = GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>();
+			if(resources.font != null)
+			{
+				text.font = resources.font;
+				textPlaceHolder.font = resources.font;
+			}
 
 			return new InputFieldContrainer(
 					GO,
 					GO.GetComponent<TMP_InputField>(),
 					text,
-					GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>(),
+					textPlaceHolder,
 					text.GetComponent<Image>()
 				);
 		}
@@ -73,13 +84,16 @@ namespace EasierUI.Controls.Factories
 			Text text_ = GO.GetComponentInChildren<Text>();
 			GameObject textObject = text_.gameObject;
 			Object.DestroyImmediate(text_);
-
+			TextMeshPro text = textObject.AddComponent<TextMeshPro>();
+			if(resources.font != null)
+				text.font = resources.font;
+			
 			return new ToggleContrainer(
 					GO,
 					toggle,
 					GO.transform.Find("Background").gameObject.GetComponent<Image>(),
 					GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>(),
-					textObject.AddComponent<TextMeshPro>()
+					text
 				);
 		}
 
