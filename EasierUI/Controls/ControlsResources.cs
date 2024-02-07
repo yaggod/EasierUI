@@ -14,7 +14,7 @@ namespace EasierUI
 
             public Sprite background;
 
-            public Sprite sliderBackground;
+            public Sprite childBackground;
 
             public Sprite inputField;
 

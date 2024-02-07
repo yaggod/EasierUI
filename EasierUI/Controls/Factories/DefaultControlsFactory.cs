@@ -103,12 +103,18 @@ namespace EasierUI.Controls.Factories
 			ScrollRect scroll = GO.GetComponent<ScrollRect>();
 			scroll.horizontal = false;
 			scroll.scrollSensitivity = DefaultSensivity;
+			GameObject scrollbarV = GO.transform.Find("Scrollbar Vertical").gameObject;
+			GameObject scrollbarH = GO.transform.Find("Scrollbar Horizontal").gameObject;
+			scrollbarV.GetComponent<Image>().sprite = resources.childBackground;
+			scrollbarH.GetComponent<Image>().sprite = resources.childBackground;
 
 			return new ScrollContainer(
 					GO,
 					scroll,
 					GO.GetComponent<Image>(),
-					GO.transform.Find("Viewport/Content").gameObject
+					GO.transform.Find("Viewport/Content").gameObject,
+					scrollbarV,
+					scrollbarH
 				);
 		}
 
