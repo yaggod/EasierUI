@@ -9,11 +9,12 @@ namespace EasierUI.Controls.Factories
 {
 	public class DefaultControlsFactory : ControlsFactory
 	{
+		private TMP_DefaultControls.Resources __defaultResourcesTMP = new TMP_DefaultControls.Resources();
+		private DefaultControls.Resources _defaultResources = new DefaultControls.Resources();
 		private DefaultControls.Resources _resources = new DefaultControls.Resources()
 		{
 			checkmark = SpritesHelper.GetFromBitmap(Images.checkmark)
 		};
-		private TMP_DefaultControls.Resources _resourcesTMP;
 
 		private const float DefaultSensivity = 10;
 
@@ -24,40 +25,42 @@ namespace EasierUI.Controls.Factories
 
 		public override ButtonContrainer CreateButton()
 		{
-			GameObject GO = TMP_DefaultControls.CreateButton(_resourcesTMP);
-			Button button = GO.GetComponent<Button>();
-			Image image = GO.GetComponent<Image>();
-			TextMeshProUGUI text = GO.GetComponentInChildren<TextMeshProUGUI>();
+			GameObject GO = TMP_DefaultControls.CreateButton(__defaultResourcesTMP);
 
-			return new ButtonContrainer(GO, button, image, text);
+			return new ButtonContrainer(
+					GO, 
+					GO.GetComponent<Button>(), 
+					GO.GetComponent<Image>(), 
+					GO.GetComponentInChildren<TextMeshProUGUI>()
+				);
 		}
 
 		public override InputFieldContrainer CreateInputField()
 		{
-			GameObject GO = TMP_DefaultControls.CreateInputField(_resourcesTMP);
-			TMP_InputField inputField = GO.GetComponent<TMP_InputField>();
+			GameObject GO = TMP_DefaultControls.CreateInputField(__defaultResourcesTMP);
 			TextMeshProUGUI text = GO.transform.Find("Text Area/Text").gameObject.GetComponent<TextMeshProUGUI>();
-			TextMeshProUGUI textPlaceholder = GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>();
-			Image image = text.GetComponent<Image>();
 
-			return new InputFieldContrainer(GO, inputField, text, textPlaceholder, image);
+			return new InputFieldContrainer(
+					GO, 
+					GO.GetComponent<TMP_InputField>(), 
+					text, 
+					GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>(), 
+					text.GetComponent<Image>()
+				);
 		}
 
 		public override PanelContainer CreatePanel()
 		{
 			GameObject GO = DefaultControls.CreatePanel(_resources);
-			RectTransform rectTransform = GO.GetComponent<RectTransform>();
 
-			return new PanelContainer(GO, rectTransform);
+			return new PanelContainer(GO, GO.GetComponent<RectTransform>());
 		}
 
 		public override SliderContrainer CreateSlider()
 		{
 			GameObject GO = DefaultControls.CreateSlider(_resources);
-			Slider slider = GO.GetComponent<Slider>();
-			Image image = GO.transform.Find("Background").gameObject.GetComponent<Image>();
 
-			return new SliderContrainer(GO, slider, image);
+			return new SliderContrainer(GO, GO.GetComponent<Slider>(), GO.transform.Find("Background").gameObject.GetComponent<Image>());
 		}
 
 		public override ToggleContrainer CreateToggle()
@@ -66,11 +69,18 @@ namespace EasierUI.Controls.Factories
 			Toggle toggle = GO.GetComponent<Toggle>();
 			toggle.isOn = false;
 
-			Image backgroundImage = GO.transform.Find("Background").gameObject.GetComponent<Image>();
-			Image checkmarkImage = GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>();
-			Text text = GO.GetComponentInChildren<Text>();
+			// little crutch
+			Text text_ = GO.GetComponentInChildren<Text>();
+			GameObject textObject = text_.gameObject;
+			UnityEngine.Object.DestroyImmediate(text_);
 
-			return new ToggleContrainer(GO, toggle, backgroundImage, checkmarkImage, text);
+			return new ToggleContrainer(
+					GO, 
+					toggle, 
+					GO.transform.Find("Background").gameObject.GetComponent<Image>(), 
+					GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>(), 
+					textObject.AddComponent<TextMeshPro>()
+				);
 		}
 
 		public override ScrollContainer CreateVerticalScroll()
@@ -78,11 +88,14 @@ namespace EasierUI.Controls.Factories
 			GameObject GO = DefaultControls.CreateScrollView(_resources);
 			ScrollRect scroll = GO.GetComponent<ScrollRect>();
 			scroll.horizontal = false;
-			GameObject content = GO.transform.Find("Viewport/Content").gameObject;
 			scroll.scrollSensitivity = DefaultSensivity;
-			RectTransform transform = content.GetComponent<RectTransform>();
 
-			return new ScrollContainer(GO, scroll, content, transform);
+			return new ScrollContainer(
+					GO, 
+					scroll, 
+					GO.GetComponent<Image>(),
+					GO.transform.Find("Viewport/Content").gameObject
+				);
 		}
 
 		public override ImageContrainer CreateImage()
@@ -90,7 +103,10 @@ namespace EasierUI.Controls.Factories
 			GameObject GO = DefaultControls.CreateImage(_resources);
 			Image image = GO.GetComponent<Image>();
 
-			return new ImageContrainer(GO, image);
+			return new ImageContrainer(
+					GO, 
+					GO.GetComponent<Image>()
+				);
 		}
 	}
 }

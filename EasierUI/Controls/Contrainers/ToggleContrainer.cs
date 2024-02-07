@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,8 +11,8 @@ namespace EasierUI.Controls
 		public readonly Toggle Toggle;
 		public readonly Image CheckmarkImage;
 		public readonly Image BackgroundImage;
-		public readonly Text Text;
-		public ToggleContrainer(GameObject GO, Toggle toggle, Image backgroundImage, Image checkmarkImage, Text text) : base(GO)
+		public readonly TextMeshPro Text;
+		public ToggleContrainer(GameObject GO, Toggle toggle, Image backgroundImage, Image checkmarkImage, TextMeshPro text) : base(GO)
 		{
 			Toggle = toggle;
 			BackgroundImage = backgroundImage;

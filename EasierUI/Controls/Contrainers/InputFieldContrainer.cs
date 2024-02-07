@@ -14,7 +14,6 @@ namespace EasierUI.Controls
 		public readonly TextMeshProUGUI TextPlaceHolder;
 		public readonly Image BackgroundImage;
 
-
 		public InputFieldContrainer(GameObject GO, TMP_InputField inputField, TextMeshProUGUI text, TextMeshProUGUI textPlaceHolder, Image backgroundImage) : base(GO)
 		{
 			InputField = inputField;

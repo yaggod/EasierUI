@@ -1,15 +1,12 @@
 ﻿using EasierUI.Controls.Contrainers;
-using EasierUI.Controls.Factories;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 using static TMPro.TMP_InputField;
 
 namespace EasierUI.Controls
 {
 	public abstract class ControlsFactory
 	{
-		public static ControlsFactory Instance => DefaultControlsFactory.Instance;
 
 		public abstract PanelContainer CreatePanel();
 		public abstract ButtonContrainer CreateButton();
@@ -113,7 +110,7 @@ namespace EasierUI.Controls
 		{
 			ImageContrainer image = CreateImage();
 			image.SetParent(parent);
-			if(name == null) 
+			if(name != null) 
 				image.SetName(name);
 			if(sprite != null)
 				image.Image.sprite = sprite;

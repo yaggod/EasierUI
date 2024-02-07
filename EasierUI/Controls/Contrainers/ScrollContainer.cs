@@ -7,18 +7,22 @@ namespace EasierUI.Controls
 	{
 		public readonly GameObject ContentHolder;
 		public readonly ScrollRect Scroll;
-		public readonly RectTransform ContentTransform;
-		public ScrollContainer(GameObject GO, ScrollRect scroll, GameObject contentHolder, RectTransform contentTransform) : base(GO)
+		public readonly Image Background;
+		public ScrollContainer(GameObject GO, ScrollRect scroll, Image background, GameObject contentHolder) : base(GO)
 		{
 			Scroll = scroll;
 			ContentHolder = contentHolder;
-			ContentTransform = contentTransform;
+			Background = background;
 		}
 
 		internal void SetHeight(float height)
 		{
-			Vector2 sizeDelta = ContentTransform.sizeDelta;
-			ContentTransform.sizeDelta = new Vector2(sizeDelta.x, height);
+			RectTransform rectTransform = ContentHolder.transform as RectTransform;
+			if(rectTransform != null)
+			{
+				Vector2 sizeDelta = rectTransform.sizeDelta;
+				rectTransform.sizeDelta = new Vector2(sizeDelta.x, height);
+			}
 		}
 	}
 }
