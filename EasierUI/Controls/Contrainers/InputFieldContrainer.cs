@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace EasierUI.Controls
+namespace EasierUI.Controls.Contrainers
 {
 	public class InputFieldContrainer : ControlContainer
 	{

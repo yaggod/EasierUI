@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace EasierUI.Controls
+namespace EasierUI.Controls.Contrainers
 {
 	public class PanelContainer : ControlContainer
 	{

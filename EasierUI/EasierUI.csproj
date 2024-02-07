@@ -49,6 +49,7 @@
     <Reference Include="UnityEngine.UIModule" HintPath="References\UnityEngine.UIModule.dll" Private="false" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ControlsResources.cs" />
     <Compile Include="Controls\Contrainers\ButtonContrainer.cs" />
     <Compile Include="Controls\Contrainers\ControlContainer.cs" />
     <Compile Include="Controls\Contrainers\ImageContrainer.cs" />

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace EasierUI.Controls
+namespace EasierUI.Controls.Contrainers
 {
 	public class ScrollContainer : ControlContainer
 	{
