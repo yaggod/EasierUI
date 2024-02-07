@@ -7,13 +7,13 @@ namespace EasierUI.Controls
 {
 	public abstract class ControlsFactory
 	{
-		public abstract PanelContainer CreatePanel();
-		public abstract ButtonContrainer CreateButton();
-		public abstract InputFieldContrainer CreateInputField();
-		public abstract ToggleContrainer CreateToggle();
-		public abstract SliderContrainer CreateSlider();
-		public abstract ScrollContainer CreateVerticalScroll();
-		public abstract ImageContrainer CreateImage();
+		protected abstract PanelContainer CreatePanel();
+		protected abstract ButtonContrainer CreateButton();
+		protected abstract InputFieldContrainer CreateInputField();
+		protected abstract ToggleContrainer CreateToggle();
+		protected abstract SliderContrainer CreateSlider();
+		protected abstract ScrollContainer CreateVerticalScroll();
+		protected abstract ImageContrainer CreateImage();
 
 		public PanelContainer CreatePanel(Transform parent, string name = null)
 		{

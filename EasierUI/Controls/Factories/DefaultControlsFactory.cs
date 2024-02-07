@@ -9,7 +9,7 @@ namespace EasierUI.Controls.Factories
 	{
 		private TMP_DefaultControls.Resources __defaultResourcesTMP = new TMP_DefaultControls.Resources();
 		private DefaultControls.Resources _defaultResources = new DefaultControls.Resources();
-		private DefaultControls.Resources _resources = new DefaultControls.Resources()
+		private DefaultControls.Resources _toggleResources = new DefaultControls.Resources()
 		{
 			checkmark = SpritesHelper.GetFromBitmap(Images.checkmark)
 		};
@@ -21,7 +21,7 @@ namespace EasierUI.Controls.Factories
 			get;
 		} = new DefaultControlsFactory();
 
-		public override ButtonContrainer CreateButton()
+		protected override ButtonContrainer CreateButton()
 		{
 			GameObject GO = TMP_DefaultControls.CreateButton(__defaultResourcesTMP);
 
@@ -33,7 +33,7 @@ namespace EasierUI.Controls.Factories
 				);
 		}
 
-		public override InputFieldContrainer CreateInputField()
+		protected override InputFieldContrainer CreateInputField()
 		{
 			GameObject GO = TMP_DefaultControls.CreateInputField(__defaultResourcesTMP);
 			TextMeshProUGUI text = GO.transform.Find("Text Area/Text").gameObject.GetComponent<TextMeshProUGUI>();
@@ -47,16 +47,16 @@ namespace EasierUI.Controls.Factories
 				);
 		}
 
-		public override PanelContainer CreatePanel()
+		protected override PanelContainer CreatePanel()
 		{
-			GameObject GO = DefaultControls.CreatePanel(_resources);
+			GameObject GO = DefaultControls.CreatePanel(_defaultResources);
 
 			return new PanelContainer(GO, GO.GetComponent<RectTransform>());
 		}
 
-		public override SliderContrainer CreateSlider()
+		protected override SliderContrainer CreateSlider()
 		{
-			GameObject GO = DefaultControls.CreateSlider(_resources);
+			GameObject GO = DefaultControls.CreateSlider(_defaultResources);
 
 			return new SliderContrainer(
 					GO, 
@@ -65,9 +65,9 @@ namespace EasierUI.Controls.Factories
 				);
 		}
 
-		public override ToggleContrainer CreateToggle()
+		protected override ToggleContrainer CreateToggle()
 		{
-			GameObject GO = DefaultControls.CreateToggle(_resources);
+			GameObject GO = DefaultControls.CreateToggle(_toggleResources);
 			Toggle toggle = GO.GetComponent<Toggle>();
 			toggle.isOn = false;
 
@@ -85,9 +85,9 @@ namespace EasierUI.Controls.Factories
 				);
 		}
 
-		public override ScrollContainer CreateVerticalScroll()
+		protected override ScrollContainer CreateVerticalScroll()
 		{
-			GameObject GO = DefaultControls.CreateScrollView(_resources);
+			GameObject GO = DefaultControls.CreateScrollView(_defaultResources);
 			ScrollRect scroll = GO.GetComponent<ScrollRect>();
 			scroll.horizontal = false;
 			scroll.scrollSensitivity = DefaultSensivity;
@@ -100,9 +100,9 @@ namespace EasierUI.Controls.Factories
 				);
 		}
 
-		public override ImageContrainer CreateImage()
+		protected override ImageContrainer CreateImage()
 		{
-			GameObject GO = DefaultControls.CreateImage(_resources);
+			GameObject GO = DefaultControls.CreateImage(_defaultResources);
 
 			return new ImageContrainer(
 					GO,
