@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-using EasierUI.Controls.Contrainers;
-using System;
+﻿using EasierUI.Controls.Contrainers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,9 +26,9 @@ namespace EasierUI.Controls.Factories
 			GameObject GO = TMP_DefaultControls.CreateButton(__defaultResourcesTMP);
 
 			return new ButtonContrainer(
-					GO, 
-					GO.GetComponent<Button>(), 
-					GO.GetComponent<Image>(), 
+					GO,
+					GO.GetComponent<Button>(),
+					GO.GetComponent<Image>(),
 					GO.GetComponentInChildren<TextMeshProUGUI>()
 				);
 		}
@@ -41,10 +39,10 @@ namespace EasierUI.Controls.Factories
 			TextMeshProUGUI text = GO.transform.Find("Text Area/Text").gameObject.GetComponent<TextMeshProUGUI>();
 
 			return new InputFieldContrainer(
-					GO, 
-					GO.GetComponent<TMP_InputField>(), 
-					text, 
-					GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>(), 
+					GO,
+					GO.GetComponent<TMP_InputField>(),
+					text,
+					GO.transform.Find("Text Area/Placeholder").gameObject.GetComponent<TextMeshProUGUI>(),
 					text.GetComponent<Image>()
 				);
 		}
@@ -72,13 +70,13 @@ namespace EasierUI.Controls.Factories
 			// little crutch
 			Text text_ = GO.GetComponentInChildren<Text>();
 			GameObject textObject = text_.gameObject;
-			UnityEngine.Object.DestroyImmediate(text_);
+			Object.DestroyImmediate(text_);
 
 			return new ToggleContrainer(
-					GO, 
-					toggle, 
-					GO.transform.Find("Background").gameObject.GetComponent<Image>(), 
-					GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>(), 
+					GO,
+					toggle,
+					GO.transform.Find("Background").gameObject.GetComponent<Image>(),
+					GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>(),
 					textObject.AddComponent<TextMeshPro>()
 				);
 		}
@@ -91,8 +89,8 @@ namespace EasierUI.Controls.Factories
 			scroll.scrollSensitivity = DefaultSensivity;
 
 			return new ScrollContainer(
-					GO, 
-					scroll, 
+					GO,
+					scroll,
 					GO.GetComponent<Image>(),
 					GO.transform.Find("Viewport/Content").gameObject
 				);
@@ -104,7 +102,7 @@ namespace EasierUI.Controls.Factories
 			Image image = GO.GetComponent<Image>();
 
 			return new ImageContrainer(
-					GO, 
+					GO,
 					GO.GetComponent<Image>()
 				);
 		}

@@ -7,7 +7,6 @@ namespace EasierUI.Controls
 {
 	public abstract class ControlsFactory
 	{
-
 		public abstract PanelContainer CreatePanel();
 		public abstract ButtonContrainer CreateButton();
 		public abstract InputFieldContrainer CreateInputField();
@@ -16,11 +15,11 @@ namespace EasierUI.Controls
 		public abstract ScrollContainer CreateVerticalScroll();
 		public abstract ImageContrainer CreateImage();
 
-
 		public PanelContainer CreatePanel(Transform parent, string name = null)
 		{
 			PanelContainer panel = CreatePanel();
 			panel.SetParent(parent);
+
 			if (name != null)
 				panel.SetName(name);
 
@@ -30,8 +29,8 @@ namespace EasierUI.Controls
 		public ButtonContrainer CreateButton(Transform parent, string name = null, Action handler = null, Sprite sprite = null, bool? fillCenter = null, string text = null)
 		{
 			ButtonContrainer button = CreateButton();
-
 			button.SetParent(parent);
+
 			if (name != null)
 				button.SetName(name);
 			if (handler != null)
@@ -50,23 +49,24 @@ namespace EasierUI.Controls
 		{
 			InputFieldContrainer field = CreateInputField();
 			field.SetParent(parent);
+
 			if (name != null)
 				field.SetName(name);
-			if(handler != null)
+			if (handler != null)
 				field.AddHandler(handler);
 			if (type != null)
 				field.InputField.contentType = (ContentType)type;
-			if(placeholderText != null)
+			if (placeholderText != null)
 				field.TextPlaceHolder.text = placeholderText;
-					
+
 			return field;
 		}
 
 		public ToggleContrainer CreateToggle(Transform parent, string name = null, Action<bool> handler = null, string text = null)
 		{
 			ToggleContrainer toggle = CreateToggle();
-
 			toggle.SetParent(parent);
+
 			if (name != null)
 				toggle.SetName(name);
 			if (handler != null)
@@ -81,38 +81,40 @@ namespace EasierUI.Controls
 		{
 			SliderContrainer slider = CreateSlider();
 			slider.SetParent(parent);
+
 			if (name != null)
 				slider.SetName(name);
-			if(handler != null)
+			if (handler != null)
 				slider.AddHandler(handler);
 			if (wholeNumbers != null)
 				slider.Slider.wholeNumbers = (bool)wholeNumbers;
-			if(minValue != null)
+			if (minValue != null)
 				slider.Slider.minValue = (float)minValue;
-			if(maxValue != null)
+			if (maxValue != null)
 				slider.Slider.maxValue = (float)maxValue;
-				
+
 			return slider;
 		}
 
 		public ScrollContainer CreateVerticalScroll(Transform parent, string name = null)
 		{
 			ScrollContainer scroll = CreateVerticalScroll();
-
 			scroll.SetParent(parent);
+
 			if (name != null)
 				scroll.SetName(name);
 
 			return scroll;
 		}
-	
+
 		public ImageContrainer CreateImage(Transform parent, string name = null, Sprite sprite = null)
 		{
 			ImageContrainer image = CreateImage();
 			image.SetParent(parent);
-			if(name != null) 
+
+			if (name != null)
 				image.SetName(name);
-			if(sprite != null)
+			if (sprite != null)
 				image.Image.sprite = sprite;
 
 			return image;

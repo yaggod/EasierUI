@@ -18,7 +18,7 @@ namespace EasierUI.Controls
 		internal void SetHeight(float height)
 		{
 			RectTransform rectTransform = ContentHolder.transform as RectTransform;
-			if(rectTransform != null)
+			if (rectTransform != null)
 			{
 				Vector2 sizeDelta = rectTransform.sizeDelta;
 				rectTransform.sizeDelta = new Vector2(sizeDelta.x, height);
