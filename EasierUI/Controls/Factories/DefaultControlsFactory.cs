@@ -58,7 +58,11 @@ namespace EasierUI.Controls.Factories
 		{
 			GameObject GO = DefaultControls.CreateSlider(_resources);
 
-			return new SliderContrainer(GO, GO.GetComponent<Slider>(), GO.transform.Find("Background").gameObject.GetComponent<Image>());
+			return new SliderContrainer(
+					GO, 
+					GO.GetComponent<Slider>(), 
+					GO.transform.Find("Background").gameObject.GetComponent<Image>()
+				);
 		}
 
 		public override ToggleContrainer CreateToggle()
@@ -99,12 +103,13 @@ namespace EasierUI.Controls.Factories
 		public override ImageContrainer CreateImage()
 		{
 			GameObject GO = DefaultControls.CreateImage(_resources);
-			Image image = GO.GetComponent<Image>();
 
 			return new ImageContrainer(
 					GO,
 					GO.GetComponent<Image>()
 				);
 		}
+
 	}
+	
 }
