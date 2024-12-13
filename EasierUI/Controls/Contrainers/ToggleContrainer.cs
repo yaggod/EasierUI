@@ -11,8 +11,8 @@ namespace EasierUI.Controls.Contrainers
 		public readonly Toggle Toggle;
 		public readonly Image CheckmarkImage;
 		public readonly Image BackgroundImage;
-		public readonly TextMeshPro Text;
-		public ToggleContrainer(GameObject GO, Toggle toggle, Image backgroundImage, Image checkmarkImage, TextMeshPro text) : base(GO)
+		public readonly TextMeshProUGUI Text;
+		public ToggleContrainer(GameObject GO, Toggle toggle, Image backgroundImage, Image checkmarkImage, TextMeshProUGUI text) : base(GO)
 		{
 			Toggle = toggle;
 			BackgroundImage = backgroundImage;

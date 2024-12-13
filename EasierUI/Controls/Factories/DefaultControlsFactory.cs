@@ -1,17 +1,13 @@
 ﻿using EasierUI.Controls.Contrainers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace EasierUI.Controls.Factories
 {
 	public class DefaultControlsFactory : ControlsFactory
 	{
-		private DefaultControls.Resources _toggleResources = new DefaultControls.Resources()
-		{
-			checkmark = SpritesHelper.GetFromBitmap(Images.checkmark)
-		};
-
 		private const float DefaultSensivity = 10;
 
 		public static DefaultControlsFactory Instance
@@ -76,15 +72,18 @@ namespace EasierUI.Controls.Factories
 
 		protected override ToggleContrainer CreateToggle(ControlsResources.Resources resources = new ControlsResources.Resources())
 		{
-			GameObject GO = DefaultControls.CreateToggle(resources.Equals(new ControlsResources.Resources()) ? _toggleResources : ControlsResources.ConvertToDefault(resources));
+			GameObject GO = DefaultControls.CreateToggle(ControlsResources.ConvertToDefault(resources));
 			Toggle toggle = GO.GetComponent<Toggle>();
 			toggle.isOn = false;
 
 			// little crutch
 			Text text_ = GO.GetComponentInChildren<Text>();
-			GameObject textObject = text_.gameObject;
-			Object.DestroyImmediate(text_);
-			TextMeshPro text = textObject.AddComponent<TextMeshPro>();
+			Object.DestroyImmediate(text_.gameObject);
+			// add real text object
+			GameObject textObject = TMP_DefaultControls.CreateText(ControlsResources.ConvertToTMP(resources));
+			textObject.transform.SetParent(GO.transform, worldPositionStays: false);
+			SetLayerRecursively(textObject, GO.layer);
+			TextMeshProUGUI text = textObject.GetComponent<TextMeshProUGUI>();
 			if(resources.font != null)
 				text.font = resources.font;
 			
@@ -95,6 +94,16 @@ namespace EasierUI.Controls.Factories
 					GO.transform.Find("Background/Checkmark").gameObject.GetComponent<Image>(),
 					text
 				);
+		}
+
+		private static void SetLayerRecursively(GameObject go, int layer)
+		{
+			go.layer = layer;
+			Transform transform = go.transform;
+			for (int i = 0; i < transform.childCount; i++)
+			{
+				SetLayerRecursively(transform.GetChild(i).gameObject, layer);
+			}
 		}
 
 		protected override ScrollContainer CreateVerticalScroll(ControlsResources.Resources resources = new ControlsResources.Resources())
